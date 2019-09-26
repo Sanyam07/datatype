@@ -12,7 +12,7 @@ install:
   - pip install -e .
 
 script:
-  - pytest --cov=app --cov-report=xml
+  - pytest --cov=src/app --cov-report=xml
 
 after_script:
   - codecov
