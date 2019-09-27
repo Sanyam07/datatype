@@ -62,13 +62,12 @@ class DataFrame:
 
     def infer_types(self):
         '''
-        Method to infer date type from DataSet columns.
+        Method to infer data type from DataSet columns.
         This method iterates over columns and pick the
-        types inferred by pandas. For Object types, 
-        checks if it is a DateTime column, if not, this
-        is Categorical.
+        types inferred by pandas.
+        For Object types, checks if it is DateTime or
+        Categorical.
         '''
-        print('aaa')
         types = {}
 
         for col in self.columns:
