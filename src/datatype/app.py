@@ -3,6 +3,7 @@
 Datatype infer Core
 """
 from dateutil.parser import parse
+import json
 import pandas as pd
 
 
@@ -79,7 +80,7 @@ class DataFrame:
             else:
                 types[col] = 'Numerical'
 
-        self.types = types
+        self.types = json.dumps(types)
 
     def _verify_dateutil(self, column_name):
         '''

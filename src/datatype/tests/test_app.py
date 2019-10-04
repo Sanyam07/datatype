@@ -3,7 +3,7 @@
 Tests of App Core
 '''
 
-from app.app import DataFrame
+from datatype.app import DataFrame
 
 
 def test_dataframe():
