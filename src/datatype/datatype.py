@@ -2,8 +2,8 @@
 """
 Datatype infer Core
 """
-from dateutil.parser import parse
 import json
+from dateutil.parser import parse
 import pandas as pd
 
 
@@ -69,18 +69,19 @@ class DataFrame:
         For Object types, checks if it is DateTime or
         Categorical.
         '''
-        types = {}
+        columns = []
 
         for col in self.columns:
             if self.pandas_types[col].kind == 'O':
                 if self._verify_dateutil(col):
-                    types[col] = 'DateTime'
+                    columns.append({'name': col, 'datatype': 'DateTime'})
                 else:
-                    types[col] = 'Categorical'
+                    columns.append(
+                        {'name': col, 'datatype': 'Categorical'})
             else:
-                types[col] = 'Numerical'
+                columns.append({'name': col, 'datatype': 'Numerical'})
 
-        self.types = json.dumps(types)
+        self.types = {"columns": columns}
 
     def _verify_dateutil(self, column_name):
         '''

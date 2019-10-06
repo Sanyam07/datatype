@@ -35,10 +35,10 @@ isort:
 	sh -c "isort --skip-glob=.tox --recursive . "
 
 lint: clean
-	pylint src/app
+	pylint src/datatype
 
 test: lint
 	pytest --verbose --color=yes $(TEST_PATH)
 
 run: test
-	python src/app/app.py
+	python src/datatype/datatype.py

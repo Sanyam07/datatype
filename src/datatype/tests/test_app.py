@@ -3,7 +3,7 @@
 Tests of App Core
 '''
 
-from datatype.app import DataFrame
+from datatype.datatype import DataFrame
 
 
 def test_dataframe():
@@ -12,22 +12,28 @@ def test_dataframe():
     '''
 
     dataframe = DataFrame.get_dataframe_from_csv(
-        'src/app/tests/data/data.csv')
+        'src/datatype/tests/data/data.csv')
 
     dataframe.infer_types()
 
-    assert dataframe.types == {'Account_Created': 'DateTime',
-                               'City': 'Categorical',
-                               'Country': 'Categorical',
-                               'Last_Login': 'DateTime',
-                               'Latitude': 'Numerical',
-                               'Longitude': 'Numerical',
-                               'Name': 'Categorical',
-                               'Payment_Type': 'Categorical',
-                               'Price': 'Numerical',
-                               'Product': 'Categorical',
-                               'State': 'Categorical',
-                               'Transaction_date': 'DateTime'}
+    print(dataframe.types)
+
+    assert dataframe.types == {'columns':
+                               [{'name': 'Transaction_date', 'datatype': 'DateTime'},
+                                {'name': 'Product', 'datatype': 'Categorical'},
+                                {'name': 'Price', 'datatype': 'Numerical'},
+                                {'name': 'Payment_Type', 'datatype': 'Categorical'},
+                                {'name': 'Name', 'datatype': 'Categorical'},
+                                {'name': 'City', 'datatype': 'Categorical'},
+                                {'name': 'State', 'datatype': 'Categorical'},
+                                {'name': 'Country', 'datatype': 'Categorical'},
+                                {'name': 'Account_Created',
+                                    'datatype': 'DateTime'},
+                                {'name': 'Last_Login', 'datatype': 'DateTime'},
+                                {'name': 'Latitude', 'datatype': 'Numerical'},
+                                {'name': 'Longitude', 'datatype': 'Numerical'}
+                                ]
+                               }
 
 
 test_dataframe()
