@@ -51,7 +51,11 @@ class DataFrame:
         '''
         DataFrame columns names.
         '''
-        return self._columns
+        columns = []
+        for col in self._columns:
+            columns.append({'name': col})
+
+        return json.dumps(columns)
 
     @staticmethod
     def get_dataframe_from_csv(path):
@@ -111,7 +115,11 @@ class Header:
         '''
         Header body.
         '''
-        return self._header
+        datatypes = []
+        for line in self._header:
+            datatypes.append({'datatype': line})
+
+        return json.dumps(datatypes)
 
     @staticmethod
     def get_header_from_txt(path):
@@ -122,3 +130,14 @@ class Header:
             lines = f.read().splitlines()
 
         return Header(lines)
+
+
+if __name__ == '__main__':
+    HEADER = Header.get_header_from_txt('./src/datatype/tests/data/header.txt')
+
+    print(HEADER.header)
+
+    DATAFRAME = DataFrame.get_dataframe_from_csv(
+        './src/datatype/tests/data/data.csv')
+
+    print(DATAFRAME.columns)
