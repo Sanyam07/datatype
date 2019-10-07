@@ -51,11 +51,7 @@ class DataFrame:
         '''
         DataFrame columns names.
         '''
-        columns = []
-        for col in self._columns:
-            columns.append({'name': col})
-
-        return json.dumps(columns)
+        return self._columns
 
     @staticmethod
     def get_dataframe_from_csv(path):
@@ -86,6 +82,13 @@ class DataFrame:
                 columns.append({'name': col, 'datatype': 'Numerical'})
 
         self.types = json.dumps({"columns": columns})
+
+    def get_columns(self):
+        columns = []
+        for col in self.columns:
+            columns.append({'name': col})
+
+        return json.dumps(columns)
 
     def _verify_dateutil(self, column_name):
         '''
