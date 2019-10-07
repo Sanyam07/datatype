@@ -2,7 +2,7 @@
 '''
 Tests of App Core
 '''
-
+import json
 from datatype.datatype import DataFrame
 
 
@@ -18,22 +18,32 @@ def test_dataframe():
 
     print(dataframe.types)
 
-    assert dataframe.types == {'columns':
-                               [{'name': 'Transaction_date', 'datatype': 'DateTime'},
-                                {'name': 'Product', 'datatype': 'Categorical'},
-                                {'name': 'Price', 'datatype': 'Numerical'},
-                                {'name': 'Payment_Type', 'datatype': 'Categorical'},
-                                {'name': 'Name', 'datatype': 'Categorical'},
-                                {'name': 'City', 'datatype': 'Categorical'},
-                                {'name': 'State', 'datatype': 'Categorical'},
-                                {'name': 'Country', 'datatype': 'Categorical'},
-                                {'name': 'Account_Created',
-                                    'datatype': 'DateTime'},
-                                {'name': 'Last_Login', 'datatype': 'DateTime'},
-                                {'name': 'Latitude', 'datatype': 'Numerical'},
-                                {'name': 'Longitude', 'datatype': 'Numerical'}
-                                ]
-                               }
+    assert dataframe.types == json.dumps({'columns':
+                                          [{'name': 'Transaction_date', 'datatype': 'DateTime'},
+                                           {'name': 'Product',
+                                              'datatype': 'Categorical'},
+                                           {'name': 'Price',
+                                            'datatype': 'Numerical'},
+                                           {'name': 'Payment_Type',
+                                            'datatype': 'Categorical'},
+                                           {'name': 'Name',
+                                            'datatype': 'Categorical'},
+                                           {'name': 'City',
+                                            'datatype': 'Categorical'},
+                                           {'name': 'State',
+                                            'datatype': 'Categorical'},
+                                           {'name': 'Country',
+                                            'datatype': 'Categorical'},
+                                           {'name': 'Account_Created',
+                                              'datatype': 'DateTime'},
+                                           {'name': 'Last_Login',
+                                            'datatype': 'DateTime'},
+                                           {'name': 'Latitude',
+                                            'datatype': 'Numerical'},
+                                           {'name': 'Longitude',
+                                            'datatype': 'Numerical'}
+                                           ]
+                                          })
 
 
 test_dataframe()

@@ -81,7 +81,7 @@ class DataFrame:
             else:
                 columns.append({'name': col, 'datatype': 'Numerical'})
 
-        self.types = {"columns": columns}
+        self.types = json.dumps({"columns": columns})
 
     def _verify_dateutil(self, column_name):
         '''
