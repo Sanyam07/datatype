@@ -96,3 +96,29 @@ class DataFrame:
             except ValueError:
                 return False
         return True
+
+
+class Header:
+    '''
+    Simple pandas header wrapper.
+    '''
+
+    def __init__(self, header):
+        self._header = header
+
+    @property
+    def header(self):
+        '''
+        Header body.
+        '''
+        return self._header
+
+    @staticmethod
+    def get_header_from_txt(path):
+        '''
+        Static method to get header from txt path.
+        '''
+        with open(path, 'r') as f:
+            lines = f.read().splitlines()
+
+        return Header(lines)
