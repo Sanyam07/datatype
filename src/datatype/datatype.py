@@ -74,7 +74,7 @@ class DataFrame:
         for col in self.columns:
             if self.pandas_types[col].kind == 'O':
                 if self._verify_dateutil(col):
-                    columns.append({'name': col, 'datatype': 'DateTime'})
+                    columns.append({'name': col, 'datatype': 'Date'})
                 else:
                     columns.append(
                         {'name': col, 'datatype': 'Categorical'})
