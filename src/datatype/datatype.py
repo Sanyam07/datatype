@@ -110,19 +110,15 @@ class Header:
     Simple pandas header wrapper.
     '''
 
-    def __init__(self, header):
-        self._header = header
+    def __init__(self, lines):
+        self._lines = lines
 
     @property
-    def header(self):
+    def lines(self):
         '''
         Header body.
         '''
-        datatypes = []
-        for line in self._header:
-            datatypes.append({'datatype': line})
-
-        return json.dumps(datatypes)
+        return self._lines
 
     @staticmethod
     def get_header_from_txt(path):
@@ -134,11 +130,26 @@ class Header:
 
         return Header(lines)
 
+    def get_lines_json(self):
+        result = []
+        for line in self.lines:
+            result.append({'datatype': line})
+
+        return json.dumps(result)
+
+    def update_line(self, position, new_datatype):
+        lines = self.lines
+        lines[position] = new_datatype
+
+        return json.dumps(lines)
+
 
 if __name__ == '__main__':
     HEADER = Header.get_header_from_txt('./src/datatype/tests/data/header.txt')
 
-    print(HEADER.header)
+    print(HEADER.get_lines_json())
+
+    print(HEADER.update_line(1, 'Date'))
 
     DATAFRAME = DataFrame.get_dataframe_from_csv(
         './src/datatype/tests/data/data.csv')
