@@ -62,7 +62,6 @@ class DataFrame:
         with open(path, 'rb') as f:
             encoding = chardet.detect(f.readline())['encoding']
 
-        print(encoding)
         dataframe = pd.read_csv(
             path, sep=None, engine='python', encoding=encoding)
         return DataFrame(dataframe)
