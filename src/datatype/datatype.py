@@ -2,6 +2,7 @@
 """
 Datatype infer Core
 """
+import chardet
 import json
 from dateutil.parser import parse
 import pandas as pd
@@ -58,7 +59,12 @@ class DataFrame:
         '''
         Static method to get DataFrame from csv path.
         '''
-        dataframe = pd.read_csv(path, sep=None, engine='python')
+        with open(path, 'rb') as f:
+            encoding = chardet.detect(f.readline())['encoding']
+
+        print(encoding)
+        dataframe = pd.read_csv(
+            path, sep=None, engine='python', encoding=encoding)
         return DataFrame(dataframe)
 
     def infer_types(self):
@@ -139,17 +145,17 @@ class Header:
 
     def update_line(self, position, new_datatype):
         lines = self.lines
-        lines[position] = new_datatype
+        lines[int(position)] = new_datatype
 
         return json.dumps(lines)
 
 
 if __name__ == '__main__':
-    HEADER = Header.get_header_from_txt('./src/datatype/tests/data/header.txt')
+    # HEADER = Header.get_header_from_txt('./src/datatype/tests/data/header.txt')
 
-    print(HEADER.get_lines_json())
+    # # print(HEADER.get_lines_json())
 
-    print(HEADER.update_line(1, 'Date'))
+    # # print(HEADER.update_line(1, 'Date'))
 
     DATAFRAME = DataFrame.get_dataframe_from_csv(
         './src/datatype/tests/data/data.csv')
