@@ -146,7 +146,7 @@ class Header:
         lines = self.lines
         lines[int(position)] = new_datatype
 
-        return json.dumps(lines)
+        return lines
 
 
 if __name__ == '__main__':
