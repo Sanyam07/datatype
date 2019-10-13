@@ -21,27 +21,27 @@ def test_dataframe():
     assert dataframe.types == json.dumps({'columns':
                                           [{'name': 'Transaction_date', 'datatype': 'DateTime'},
                                            {'name': 'Product',
-                                              'datatype': 'Categorical'},
+                                              'datatype': 'factor'},
                                            {'name': 'Price',
-                                            'datatype': 'Numerical'},
+                                            'datatype': 'numeric'},
                                            {'name': 'Payment_Type',
-                                            'datatype': 'Categorical'},
+                                            'datatype': 'factor'},
                                            {'name': 'Name',
-                                            'datatype': 'Categorical'},
+                                            'datatype': 'factor'},
                                            {'name': 'City',
-                                            'datatype': 'Categorical'},
+                                            'datatype': 'factor'},
                                            {'name': 'State',
-                                            'datatype': 'Categorical'},
+                                            'datatype': 'factor'},
                                            {'name': 'Country',
-                                            'datatype': 'Categorical'},
+                                            'datatype': 'factor'},
                                            {'name': 'Account_Created',
                                               'datatype': 'DateTime'},
                                            {'name': 'Last_Login',
                                             'datatype': 'DateTime'},
                                            {'name': 'Latitude',
-                                            'datatype': 'Numerical'},
+                                            'datatype': 'numeric'},
                                            {'name': 'Longitude',
-                                            'datatype': 'Numerical'}
+                                            'datatype': 'numeric'}
                                            ]
                                           })
 

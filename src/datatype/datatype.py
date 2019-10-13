@@ -72,19 +72,19 @@ class DataFrame:
         This method iterates over columns and pick the
         types inferred by pandas.
         For Object types, checks if it is DateTime or
-        Categorical.
+        factor.
         '''
         columns = []
 
         for col in self.columns:
             if self.pandas_types[col].kind == 'O':
                 if self._verify_dateutil(col):
-                    columns.append({'name': col, 'datatype': 'Date'})
+                    columns.append({'name': col, 'datatype': 'DateTime'})
                 else:
                     columns.append(
-                        {'name': col, 'datatype': 'Categorical'})
+                        {'name': col, 'datatype': 'factor'})
             else:
-                columns.append({'name': col, 'datatype': 'Numerical'})
+                columns.append({'name': col, 'datatype': 'numeric'})
 
         self.types = json.dumps({"columns": columns})
 
@@ -154,7 +154,7 @@ if __name__ == '__main__':
 
     # # print(HEADER.get_lines_json())
 
-    # # print(HEADER.update_line(1, 'Date'))
+    # # print(HEADER.update_line(1, 'DateTime'))
 
     DATAFRAME = DataFrame.get_dataframe_from_csv(
         './src/datatype/tests/data/data.csv')
